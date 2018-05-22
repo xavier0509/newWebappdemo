@@ -881,6 +881,7 @@ cordova.define("com.coocaaosapi", function(require, exports, module) {
     }
 
     /*获取app相关信息*/
+    //参数传递一个对象，key为"pkgList",value为应用包名的数组。即{pkgList:["com.tianci.user","com.tianci.movieplatform"]}
     CoocaaOSApi.prototype.getAppInfo = function(packageName,success,error){
         console.log( "getAppInfo in coocaaosapi.js");
         argscheck.checkArgs('sff','CoocaaOSApi.getAppInfo',arguments);
@@ -902,19 +903,30 @@ cordova.define("com.coocaaosapi", function(require, exports, module) {
     }
 
     /*设置Business相关信息*/
+    //cc_type区分同步、异步。默认为异步（async）,只有传sync时才会更改
     CoocaaOSApi.prototype.setBusinessData = function(cc_type,cc_data,success,error){
         console.log( "setBusinessData in coocaaosapi.js");
         argscheck.checkArgs('ssff','CoocaaOSApi.setBusinessData',arguments);
         exec(success,error,'CoocaaOSApi','setBusinessData',[{'cc_data':cc_data},{'cc_type':cc_type}]);
     }
 
-     //启动传参action
+     //启动传参action 
+     // 包名、版本号、startActivity、action、action名、拓展参数[{key1:"value1"},{key2:"value2"}]
     CoocaaOSApi.prototype.startParamAction = function(pkname,version,activity,action,param,str,success,error){
         console.log("启动传参action")
         argscheck.checkArgs('ssssssff','CoocaaOSApi.startParamAction',arguments);
         str = JSON.parse(str);
         startapp.start([["action", param,pkname],str], success,error);
     }
+
+    /*
+     *退出用户登录状态
+     */
+    CoocaaOSApi.prototype.setCoocaaUserLogout = function(success,error){
+        argscheck.checkArgs('ff','CoocaaOSApi.setCoocaaUserLogout',arguments);
+        exec(success,error,'CoocaaOSApi','setCoocaaUserLogout',[]);
+    }
+    
 	module.exports = new CoocaaOSApi();
 });
 
