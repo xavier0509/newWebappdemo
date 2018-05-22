@@ -879,6 +879,42 @@ cordova.define("com.coocaaosapi", function(require, exports, module) {
         argscheck.checkArgs('sff','CoocaaOSApi.apkhas',arguments);
         startapp.check(pkg, success,error);
     }
+
+    /*获取app相关信息*/
+    CoocaaOSApi.prototype.getAppInfo = function(packageName,success,error){
+        console.log( "getAppInfo in coocaaosapi.js");
+        argscheck.checkArgs('sff','CoocaaOSApi.getAppInfo',arguments);
+        exec(success,error,'CoocaaOSApi','getAppInfo',[{'pkgList':packageName}]);
+    }
+
+    //获取基础信息
+    CoocaaOSApi.prototype.getBaseInfo = function(success,error){
+      console.log("getBaseInfo   in   coocaajs")
+        argscheck.checkArgs('ff','CoocaaOSApi.getBaseInfo',arguments);
+        exec(success,error,'CoocaaOSApi','getBaseInfo',[]);
+    }
+
+    /*获取Business相关信息*/
+    CoocaaOSApi.prototype.getBusinessData = function(cc_type,cc_data,success,error){
+        console.log( "getBusinessData in coocaaosapi.js");
+        argscheck.checkArgs('ssff','CoocaaOSApi.getBusinessData',arguments);
+        exec(success,error,'CoocaaOSApi','getBusinessData',[{'cc_data':cc_data},{'cc_type':cc_type}]);
+    }
+
+    /*设置Business相关信息*/
+    CoocaaOSApi.prototype.setBusinessData = function(cc_type,cc_data,success,error){
+        console.log( "setBusinessData in coocaaosapi.js");
+        argscheck.checkArgs('ssff','CoocaaOSApi.setBusinessData',arguments);
+        exec(success,error,'CoocaaOSApi','setBusinessData',[{'cc_data':cc_data},{'cc_type':cc_type}]);
+    }
+
+     //启动传参action
+    CoocaaOSApi.prototype.startParamAction = function(pkname,version,activity,action,param,str,success,error){
+        console.log("启动传参action")
+        argscheck.checkArgs('ssssssff','CoocaaOSApi.startParamAction',arguments);
+        str = JSON.parse(str);
+        startapp.start([["action", param,pkname],str], success,error);
+    }
 	module.exports = new CoocaaOSApi();
 });
 
