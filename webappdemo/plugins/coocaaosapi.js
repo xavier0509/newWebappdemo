@@ -813,6 +813,16 @@ cordova.define("com.coocaaosapi", function(require, exports, module) {
 			], success, error);
 		});
 	}
+	//启动优惠券列表页
+    CoocaaOSApi.prototype.startAllCoupon = function(sign,openId,appId,businessLine,extendParam,success,error){
+        argscheck.checkArgs('sssssff','CoocaaOSApi.startAllCoupon',arguments);
+        startapp.start([["action", "coocaa.intent.action.ALLCOUPON"],[{"sign":sign},{"openId":openId},{"appId":appId},{"businessLine":businessLine},{"extendParam":extendParam}]], success,error);
+    }
+    //启动我的优惠券
+    CoocaaOSApi.prototype.startMyCoupon = function(sign,openId,appId,businessLine,businessType,success,error){
+        argscheck.checkArgs('sssssff','CoocaaOSApi.startAllCoupon',arguments);
+        startapp.start([["action", "coocaa.intent.action.MYCOUPON"],[{"sign":sign},{"openId":openId},{"appId":appId},{"businessLine":businessLine},{"business_type":businessType}]], success,error);
+    }
 	//获取属性
 	CoocaaOSApi.prototype.getPropertiesValue = function(data, success, error) {
 		argscheck.checkArgs('sff', 'CoocaaOSApi.getPropertiesValue', arguments);
@@ -828,7 +838,7 @@ cordova.define("com.coocaaosapi", function(require, exports, module) {
         exec(success,error,'CoocaaOSApi','getSpaceInfo',[]);
     }
 
-
+    //通用监听
     CoocaaOSApi.prototype.addCommonListener = function(listener)
     {
         argscheck.checkArgs('f','CoocaaOSApi.addCommonListener',arguments);
