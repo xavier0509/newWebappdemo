@@ -42,7 +42,7 @@ body {
     margin:0px;
     padding:0px;
     text-transform:uppercase;
-    width:100%;
+    width:1920px;
 }
 
 /* Portrait layout (default) */
@@ -115,3 +115,12 @@ h1 {
     -webkit-animation:fade 3000ms infinite;
 }
 */
+td{
+    vertical-align: text-top;
+    text-align: center;
+}
+th{
+    font-size: 30px;
+    width: 1125px;
+    text-align: center;
+}
